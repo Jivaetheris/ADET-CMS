@@ -135,7 +135,7 @@ button {
     background-color: #2ff1f1;
 }
 
-
+/* create appointment*/
 
 a {
     outline: none;
@@ -154,7 +154,7 @@ body {
 }
 .appointment-form {
     background: #fff;
-    padding: 20px;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -181,12 +181,13 @@ body {
     text-align: left;
 }
 .appointment-form input, .appointment-form select, .appointment-form textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
+    margin-right: 30%;
 }
 .appointment-form button {
     width: 48%;
@@ -196,18 +197,19 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
-.appointment-form .cancel-btn {
-    background-color: #FF4B4B;
+#cancel-btn { 
+    background-color: #FF4B4B; /*create appointment button*/
     color: white;
     margin-right: 4%;
+    gap: 50px;
 }
-.appointment-form .cancel-btn:hover {
+.cancel-btn:hover {
     background-color: #cc0000;
 }
-.appointment-form .submit-btn {
+#submit-btn {
     background-color: #007BFF;
     color: white;
 }
-.appointment-form .submit-btn:hover {
+.submit-btn:hover {
     background-color: #0056b3;
 }
