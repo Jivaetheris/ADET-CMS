@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    background: url(../images/background2.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color:#fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(22, 2, 2, 0.1);
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #3a75b0;
+    background: url(../images/background.jpg) no-repeat center center fixed;
+    
+    
+}
+
+h1 {
+    font-size: 22px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 1px;
+}
+
+.logo {
+    max-width: 35%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 60px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group input:hover{
+    opacity: 0.9;
+    transition: 0.3s;
+    background-color: rgb(214, 214, 214);
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #004080;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#address {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus, select:focus {
+    border-color: #004080;
+    outline: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.submit-btn {
+    background-color: #5cb85c;
+    color: #fff;
+}
+.appointment-btn {
+    background-color: #fff;
+    color: #000;
+    padding: 25px;
+}
+.Registration-btn {
+    background-color: #fff;
+    color: #000;
+    padding: 15px;
+}
+.exit-btn {
+    background-color: red;
+    color: #fff;
+    margin-right: 70%;
+    width: 100px;
+    border-radius: 5px;
+}
+.form-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+
+.appointment-btn:hover, .Registration-btn:hover {
+    opacity: 0.9;
+    transition: 0.3s;
+    background-color: #2ff1f1;
+}
+
+
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+}

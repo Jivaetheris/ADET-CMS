@@ -1,0 +1,14 @@
+//mySQL Database for 
+CREATE DATABASE registration;
+
+CREATE TABLE registration (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(100),
+    lastName VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    fatherName VARCHAR(100),
+    motherName VARCHAR(100),
+    address VARCHAR(255),
+    gender VARCHAR(10)
+);
