@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Appointment created successfully!";
-        header("Location: appointment-success.html"); // wara pa
+        header("Location: ../html/appointment-success.html"); // wara pa
         exit;
     } else {
         echo "Error: " . $stmt->error;

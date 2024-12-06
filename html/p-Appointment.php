@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="p-appointment-data.php" method="post" class="appointment-form">
+        <form action="../backend/p-appointment-data.php" method="post" class="appointment-form">
             <div class="banner">Create Appointment</div>
 
             <!-- Patient Selection -->
