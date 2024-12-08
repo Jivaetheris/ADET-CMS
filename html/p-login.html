@@ -129,24 +129,27 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="info-section">
-            <img src="../images/logo.png" alt="EasyCare Logo">
-            <h1>TouchMyself</h1>
-            <p>Connecting you to better health. Experience easy appointments, secure communication, and personalized care. Your well-being is our priority!</p>
-        </div>
-        <div class="login-section">
-            <h2>Login to your account</h2>
-            <input type="email" name="email" id="email" placeholder="Enter Email" required>
-            <input type="password" name="password" id="password" placeholder="Enter Password" required>
-            <button type="submit" class="submit-btn">Login</button>
-
-            <div class="social-icons">
-                <a href="#"><img src="../images/fb_logo.png" alt="Facebook"></a>
-                <a href="#"><img src="../images/ig_logo.png" alt="Instagram"></a>
-                <a href="#"><img src="../images/x_logo.png" alt="X"></a>
+    <form action="../backend/login.php" method="POST">
+        <div class="login-container">
+            <div class="info-section">
+                <img src="../images/logo.png" alt="EasyCare Logo">
+                <h1>TouchMyself</h1>
+                <p>Connecting you to better health. Experience easy appointments, secure communication, and personalized care. Your well-being is our priority!</p>
+            </div>
+            <div class="login-section">
+                <h2>Login to your account</h2>
+                <input type="email" name="email" id="email" placeholder="Enter Email" required>
+                <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                <button type="submit" class="submit-btn">Login</button>
+    
+                <div class="social-icons">
+                    <a href="#"><img src="../images/fb_logo.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/ig_logo.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/x_logo.png" alt="X"></a>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    
 </body>
 </html>
