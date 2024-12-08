@@ -3,16 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Management System</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Login Page - Clinic Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            display: flex;
+            width: 800px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .login-container .info-section {
+            flex: 1;
+            background-color: #004080;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container .info-section img {
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .login-container .info-section h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .login-container .info-section p {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .login-container .login-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container .login-section h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #004080;
+        }
+
+        .login-container .login-section button {
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #004080;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container .login-section button:hover {
+            background-color: #003366;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ddd;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+
+        .social-icons a img {
+            width: 60%;
+        }
+
+        .about-us {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-container .login-section a {
+            text-decoration: none;
+            color: white;
+        }
+
+        
+
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Clinic Management System</h1>
-        <img src="../images/logo.png" alt="Clinic Logo"  class="logo">
-        <form action="" method="">
-            <div class="form-button">
-                <button class="appointment-btn"><a href="p-Appointment.php">Create Appoinment</a></button>
-                <button class="Registration-btn"><a href="p-Registration.html">New Patient Registration</a></button>
-                <button type="reset" class="exit-btn">Exit</button>
+    <div class="login-container">
+        <div class="info-section">
+            <img src="../images/logo.png" alt="EasyCare Logo">
+            <h1>TouchMyself</h1>
+            <p>Connecting you to better health. Experience easy appointments, secure communication, and personalized care. Your well-being is our priority!</p>
+        </div>
+        <div class="login-section">
+            <h2>Welcome!</h2>
+            <button><a href="p-login.html">LOGIN</a></button>
+            <button><a href="p-Registration.html">REGISTER</a></button>
+
+            <div class="social-icons">
+                <a href="#"><img src="../images/fb_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../images/ig_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../images/x_logo.png" alt="X"></a>
             </div>
+        </div>
+    </div>
+</body>
+</html>
