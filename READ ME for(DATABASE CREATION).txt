@@ -1,8 +1,17 @@
 //mySQL Database for
 CREATE DATABASE clinicsystem;
 
-//for patient reg
-CREATE TABLE registration (
+CREATE TABLE IF NOT EXISTS appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    disease_description TEXT NOT NULL,
+    doctor_name VARCHAR(100) NOT NULL,
+    appointment_date DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES registration(id)
+)";
+
+CREATE TABLE IF NOT EXISTS registration (
     id INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(100),
     lastName VARCHAR(100),
@@ -11,15 +20,7 @@ CREATE TABLE registration (
     fatherName VARCHAR(100),
     motherName VARCHAR(100),
     address VARCHAR(255),
-    gender VARCHAR(10)
-);
-
-//for creating appointment
-CREATE TABLE appointments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,
-    disease_description TEXT NOT NULL,
-    doctor_name VARCHAR(100) NOT NULL,
-    appointment_date DATETIME NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES registration(id)
-);
+    gender VARCHAR(10),
+    password VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";

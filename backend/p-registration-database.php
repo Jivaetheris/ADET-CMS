@@ -49,7 +49,8 @@ CREATE TABLE IF NOT EXISTS appointments (
     doctor_name VARCHAR(100) NOT NULL,
     appointment_date DATETIME NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES registration(id)
+    FOREIGN KEY (patient_id) REFERENCES registration(id),
+    status ENUM('Pending', 'Confirmed', 'Cancelled') NOT NULL DEFAULT 'Pending'
 )";
 if (!$connection->query($createAppointmentsTableQuery)) {
     die("Error creating table 'appointments': " . $connection->error);

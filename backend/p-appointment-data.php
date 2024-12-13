@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctor_name = $_POST['doctor-name'];
     $appointment_date = $_POST['appointment-date'];
 
+
     // Validate inputs
     if (empty($patient_id) || empty($disease_description) || empty($doctor_name) || empty($appointment_date)) {
         echo "All fields are required.";
