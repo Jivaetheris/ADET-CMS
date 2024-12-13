@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TouchMyself</title>
+    <title>Care Touch</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="right-container">
+        <img src="../images/nurse.jpg" width="100%"/>
+        <div class="info-section">
+            <h1>Care Touch</h1>
+            <p>Connecting you to better health. Experience easy appointments, secure communication, and personalized care. Your well-being is our priority!</p>
+        </div>
+    </div>
     <div class="container">
-        <h1>TouchMyself</h1>
         <h2>Patient Registration</h2>
-        <img src="../images/logo.png" alt="Clinic Logo"  class="logo">
+        <img src="../images/patient.png" alt="Clinic Logo"  class="logo">
         <form action="../backend/p-registration-database.php" method="post">
             <div class="form-group">
                 <label for="firstName">Patient Name</label>
@@ -51,7 +57,6 @@
             <div class="form-group">
                 <label for="gender">Gender</label>
                 <select name="gender" id="gender" required>
-                    <
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
@@ -63,6 +68,5 @@
             </div>
         </form>
     </div>
-    
 </body>
 </html>
