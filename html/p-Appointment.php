@@ -45,7 +45,7 @@
             <input type="datetime-local" id="appointment-date" name="appointment-date" required>
 
             <div style="display: flex; justify-content: space-between;">
-                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href='p-dashboard.php'">Cancel</button>
                 <button type="submit" class="submit-btn">Submit</button>
             </div>
         </form>

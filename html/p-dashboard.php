@@ -70,7 +70,7 @@
         <h1>Patient Dashboard</h1>
         <a href="index.html">Home</a>
         <a href="p-Appointment.php">Create Appointment</a>
-        <a href="">Logout</a>
+        <a href="index.html">Logout</a>
     </div>
 
     <div class="container">

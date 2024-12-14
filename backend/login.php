@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Correct password, start session and redirect to the dashboard or home page
             $_SESSION['user_id'] = $userId;  // Store user id in session
             $_SESSION['first_name'] = $firstName;  // Store first name in session
-            header("Location: ../html/p-Appointment.php");  // Redirect to user dashboard (change as needed)
+            header("Location: ../html/p-dashboard.php");  // Redirect to user dashboard (change as needed)
             exit;
         } else {
             echo "Invalid password!";
