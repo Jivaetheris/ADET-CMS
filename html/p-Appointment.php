@@ -39,7 +39,24 @@
             <textarea id="disease-description" name="disease-description" rows="3" placeholder="Describe the disease" required></textarea>
 
             <label for="doctor-name">Doctor Name</label>
-            <input type="text" id="doctor-name" name="doctor-name" placeholder="Enter doctor name" required>
+            <select id="doctor-name" name="doctor-name" required>
+                <option value="">-- Select a Doctor --</option>
+                <?php
+                $stmt = $connection->prepare("SELECT id, name, specialization FROM doctors");
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='{$row['id']}'>{$row['name']} - {$row['specialization']}</option>";
+                    }
+                } else {
+                    echo "<option value=''>No doctors found</option>";
+                }
+
+                $stmt->close();
+                ?>
+            </select>
 
             <label for="appointment-date">Appointment Date</label>
             <input type="datetime-local" id="appointment-date" name="appointment-date" required>
