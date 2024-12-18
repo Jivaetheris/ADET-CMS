@@ -109,7 +109,7 @@
                 <td>" . htmlspecialchars($row["PatientName"]) . "</td>
                 <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
                 <td>" . htmlspecialchars($row["doctor_name"]) . "</td>
-                <td>" . htmlspecialchars($row["status"]) . "</td>;
+                <td>" . htmlspecialchars($row["status"]) . "</td>
               </tr>";
         }
     }else {

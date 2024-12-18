@@ -2,47 +2,61 @@
 // Include database connection
 require_once '../backend/connection.php';
 
-// Assume doctor_name or a session variable determines the logged-in doctor
-$doctor_name = "Dr. John Doe";  // Replace with the actual logged-in doctor's name or session data
+if (isset($_GET['doctor_name'])) {
+    $doctor_name = $_GET['doctor_name'];
 
-// Prepare the SQL query to fetch appointments for the specific doctor
-$query = "
-    SELECT 
-        a.id,
-        r.firstName, 
+    // Prepare the SQL query to fetch appointments for the specific doctor
+    $query = "
+        SELECT 
+        a.id AS appointment_id,
+        r.firstName AS PatientFirstName,
+        r.lastName AS PatientLastName,
+        a.disease_description,
         a.appointment_date,
-        a.doctor_name,  // Assuming doctor_name exists in the appointments table
         a.status
-    FROM appointments a
-    INNER JOIN registration r ON a.patient_id = r.patient_id
-    WHERE a.doctor_name = ?  // Use doctor_name instead of doctor_id if needed
-    ORDER BY a.appointment_date DESC
-";
+        FROM appointments a
+        INNER JOIN registration r ON a.patient_id = r.id
+        WHERE a.doctor_name = ?  -- Filtering appointments by doctor_name
+        ORDER BY a.appointment_date DESC
+    ";
 
-// Prepare and execute the query
-$stmt = $connection->prepare($query);
-$stmt->bind_param("s", $doctor_name);  // 's' indicates string type
-$stmt->execute();
+    // Prepare and execute the query
+    if ($stmt = $connection->prepare($query)) {
+        $stmt->bind_param("s", $doctor_name);  // 's' indicates string type for doctor_name
+        $stmt->execute();
 
-// Get the result
-$result = $stmt->get_result();
+        // Get the result
+        $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-            <td>" . htmlspecialchars($row["PatientName"]) . "</td>
-            <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
-            <td>" . htmlspecialchars($row["doctor_name"]) . "</td>
-            <td>" . htmlspecialchars($row["status"]) . "</td>
-          </tr>";
+        if ($result->num_rows > 0) {
+            // Display appointments
+            while ($row = $result->fetch_assoc()) {
+                // Format the appointment date for better readability
+                $appointment_date = date("Y-m-d H:i:s", strtotime($row["appointment_date"]));
+                
+                echo "<tr>
+                    <td>" . htmlspecialchars($row["PatientFirstName"]) . " " . htmlspecialchars($row["PatientLastName"]) . "</td>
+                    <td>" . htmlspecialchars($row["disease_description"]) . "</td>
+                    <td>" . htmlspecialchars($appointment_date) . "</td>
+                    <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
+                  </tr>";
+            }
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error preparing the query.";
     }
 } else {
-    echo "<tr><td colspan='4'>No appointments found</td></tr>";
+    echo "<p>Please select a doctor to view their appointments.</p>";
 }
-
-$stmt->close();
 ?>
 
+<?php
+// Fetch doctors from the database
+$query = "SELECT id, name FROM doctors";
+$doctor_result = $connection->query($query);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,6 +115,24 @@ $stmt->close();
 <body>
     <h1>Doctor Dashboard - Appointments</h1>
 
+    <!-- Doctor Selection Form -->
+    <form action="doctor-dashboard.php" method="GET">
+        <label for="doctor_select">Select a Doctor:</label>
+        <select id="doctor_select" name="doctor_name">
+            <option value="">-- Select Doctor --</option>
+            <?php
+            if ($doctor_result->num_rows > 0) {
+                while ($row = $doctor_result->fetch_assoc()) {
+                    echo "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
+                }
+            } else {
+                echo "<option value='' disabled>No doctors available</option>";
+            }
+            ?>
+        </select>
+        <button type="submit">View Appointments</button>
+    </form>
+
     <!-- Table to display appointments -->
     <table id="appointmentTable">
         <thead>
@@ -109,31 +141,30 @@ $stmt->close();
                 <th>Disease Description</th>
                 <th>Appointment Date</th>
                 <th>Status</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         <?php
-            if ($result->num_rows > 0) {
+            // If appointments are found, display them
+            if (isset($result) && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-                            <td>" . htmlspecialchars($row["PatientName"]) . "</td>
+                            <td>" . htmlspecialchars($row["PatientFirstName"]) . " " . htmlspecialchars($row["PatientLastName"]) . "</td>
+                            <td>" . htmlspecialchars($row["disease_description"]) . "</td>
                             <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
-                            <td>" . htmlspecialchars($row["doctor_name"]) . "</td>
                             <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
-                          </tr>";
+                        </tr>";
                 }
             } else {
                 echo "<tr><td colspan='4' style='text-align:center;'>No appointments found.</td></tr>";
             }
-            ?>
+        ?>
         </tbody>
     </table>
 
     <!-- Button to Refresh Appointments -->
     <button onclick="fetchAppointments()">Refresh Appointments</button>
 
-    <script src="doctor-dashboard-script.js">
-    </script>
+    <script src="doctor-dashboard-script.js"></script>
 </body>
 </html>

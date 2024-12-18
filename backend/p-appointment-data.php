@@ -1,6 +1,5 @@
 <?php
-require 'connection.php'; // Use relative path since it's in the same folder
-
+require 'connection.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $patient_id = $_POST['patient-id'];
     $disease_description = $_POST['disease-description'];
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Appointment created successfully!";
-        header("Location: ../html/appointment-success.html"); // wara pa
+        header("Location: ../html/appointment-success.html");
         exit;
     } else {
         echo "Error: " . $stmt->error;
