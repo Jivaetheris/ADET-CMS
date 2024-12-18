@@ -22,11 +22,14 @@ function fetchAppointments() {
                             <td>
                                 <button onclick="updateStatus(${appointment.appointment_id}, 'accept')">Accept</button>
                                 <button onclick="updateStatus(${appointment.appointment_id}, 'decline')">Decline</button>
+                                <button onclick="rescheduleAppointment(${appointment.appointment_id})">Reschedule</button>
                             </td>
                         </tr>
                     `;
                     tableBody.innerHTML += row;
                 });
+                
+                
             } else {
                 tableBody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No appointments available.</td></tr>";
             }
@@ -77,6 +80,48 @@ function updateStatus(appointmentId, action) {
 
     xhr.send(data);
 }
+
+function rescheduleAppointment(appointmentId) {
+    const newDate = prompt("Enter new date and time (YYYY-MM-DD HH:MM):");
+    if (newDate) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../backend/fetch-appointments.php", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        const data = JSON.stringify({
+            action: "reschedule",
+            appointment_id: appointmentId,
+            appointment_date: newDate
+        });
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert(response.message);
+                        fetchAppointments(); // Refresh the appointments
+                    } else {
+                        alert(response.message || "Failed to reschedule the appointment.");
+                    }
+                } catch (e) {
+                    alert("Unexpected response from the server.");
+                }
+            } else {
+                alert("Failed to reschedule the appointment. Server error.");
+            }
+        };
+
+        xhr.onerror = function () {
+            alert("An error occurred while rescheduling the appointment.");
+        };
+
+        xhr.send(data);
+    }
+}
+
+
+
 
 // Fetch appointments on page load
 window.onload = fetchAppointments;
