@@ -149,7 +149,6 @@ $doctor_result = $connection->query($query);
                             <td>" . htmlspecialchars($row["disease_description"]) . "</td>
                             <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
                             <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
-                            <td>". CREATE KA KI BUTTON PARA SA ACCEPT REJECT RESCHEDULE"</td>
                         </tr>";
                 }
             } else {
