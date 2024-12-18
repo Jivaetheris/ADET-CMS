@@ -1,6 +1,12 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+session_start();
+
+if (!isset($_SESSION['admin'])) {
+    header('Location: admin-log.html');  // If not logged in, redirect to login page
+    exit();
+}
+
+$adminEmail = $_SESSION['admin'];
 
 $host = 'localhost';
 $username = 'root';
@@ -273,7 +279,7 @@ $doctorsResult = $connection->query($doctorsQuery);
     <div class="navbar">
         <h1>Admin Dashboard</h1>
         <a href="index.html">Home</a>
-        <a href="logout.html">Logout</a>
+        <a href="../backend/admin-logout.php" class="btn btn-danger">Logout</a>
     </div>
 
     <div class="container">
@@ -395,3 +401,6 @@ $doctorsResult = $connection->query($doctorsQuery);
     </script>
 </body>
 </html>
+<?php
+$conn->close();
+?>
