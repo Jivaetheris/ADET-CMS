@@ -3,7 +3,7 @@ function fetchAppointments() {
     refreshButton.disabled = true;  // Disable the button
 
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "../backend/fetch_appointments.php", true);
+    xhr.open("GET", "../backend/fetch-appointments.php", true);
 
     xhr.onload = function () {
         if (xhr.status === 200) {

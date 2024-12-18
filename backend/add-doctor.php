@@ -4,7 +4,7 @@ include 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if the form fields are set
     if (isset($_POST['doctor-name'], $_POST['specialization'], $_POST['email'], $_POST['phone'])) {
-        $name = $_POST['doctor-name'];
+        $name = $_POST['doctor_name'];
         $specialization = $_POST['specialization'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];

@@ -6,7 +6,7 @@ if (isset($_GET['doctor_name'])) {
     $doctor_name = $_GET['doctor_name'];
 
     // Prepare the SQL query to fetch appointments for the specific doctor
-    $query = "
+    $query ="
         SELECT 
         a.id AS appointment_id,
         r.firstName AS PatientFirstName,
@@ -16,32 +16,17 @@ if (isset($_GET['doctor_name'])) {
         a.status
         FROM appointments a
         INNER JOIN registration r ON a.patient_id = r.id
-        WHERE a.doctor_name = ?  -- Filtering appointments by doctor_name
+        WHERE a.doctor_name = ".$doctor_name."
         ORDER BY a.appointment_date DESC
     ";
 
     // Prepare and execute the query
     if ($stmt = $connection->prepare($query)) {
-        $stmt->bind_param("s", $doctor_name);  // 's' indicates string type for doctor_name
+        
         $stmt->execute();
 
         // Get the result
         $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            // Display appointments
-            while ($row = $result->fetch_assoc()) {
-                // Format the appointment date for better readability
-                $appointment_date = date("Y-m-d H:i:s", strtotime($row["appointment_date"]));
-                
-                echo "<tr>
-                    <td>" . htmlspecialchars($row["PatientFirstName"]) . " " . htmlspecialchars($row["PatientLastName"]) . "</td>
-                    <td>" . htmlspecialchars($row["disease_description"]) . "</td>
-                    <td>" . htmlspecialchars($appointment_date) . "</td>
-                    <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
-                  </tr>";
-            }
-        }
 
         $stmt->close();
     } else {
@@ -110,6 +95,16 @@ $doctor_result = $connection->query($query);
         .status-cancelled {
             color: red;
         }
+        .overlay .modal {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 100%;
+        }
+        .overlay.active {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -123,7 +118,7 @@ $doctor_result = $connection->query($query);
             <?php
             if ($doctor_result->num_rows > 0) {
                 while ($row = $doctor_result->fetch_assoc()) {
-                    echo "<option value='" . htmlspecialchars($row['name']) . "'>" . htmlspecialchars($row['name']) . "</option>";
+                    echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['name']) . "</option>";
                 }
             } else {
                 echo "<option value='' disabled>No doctors available</option>";
@@ -141,6 +136,7 @@ $doctor_result = $connection->query($query);
                 <th>Disease Description</th>
                 <th>Appointment Date</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -153,6 +149,7 @@ $doctor_result = $connection->query($query);
                             <td>" . htmlspecialchars($row["disease_description"]) . "</td>
                             <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
                             <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
+                            <td>". CREATE KA KI BUTTON PARA SA ACCEPT REJECT RESCHEDULE"</td>
                         </tr>";
                 }
             } else {
@@ -162,7 +159,6 @@ $doctor_result = $connection->query($query);
         </tbody>
     </table>
 
-    <!-- Button to Refresh Appointments -->
     <button onclick="fetchAppointments()">Refresh Appointments</button>
 
     <script src="doctor-dashboard-script.js"></script>

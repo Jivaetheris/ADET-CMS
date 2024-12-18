@@ -92,14 +92,15 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT 
-            CONCAT(firstName, ' ', lastName) AS PatientName, 
-            appointment_date, 
-            doctor_name, 
-            status 
-            FROM appointments 
-            INNER JOIN registration 
-            ON appointments.patient_id = registration.id";
+    $sql = "
+        SELECT 
+        CONCAT(r.firstName, ' ', r.lastName) AS PatientName, 
+        a.appointment_date AS appointment_date, 
+        d.name AS doctor_name, 
+        a.status AS status
+        FROM appointments as a
+        JOIN registration as r ON a.patient_id = r.id
+        JOIN doctors as d ON a.doctor_name = d.id";
 
     $result = $conn-> query($sql);
 
