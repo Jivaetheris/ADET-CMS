@@ -8,10 +8,21 @@ $password = '';
 $dbname = 'clinicsystem';
 
 // Create connection
-$connection = new mysqli($host, $username, $password, $dbname);
+$connection = new mysqli($host, $username, $password);
+
+// Check connection
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
+
+// Create database if it does not exist
+$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS $dbname";
+if (!$connection->query($createDatabaseQuery)) {
+    die("Error creating database: " . $connection->error);
+}
+
+// Select database
+$connection->select_db($dbname);
 
 // Create the doctors table if it does not exist
 $createDoctorsTableQuery = "
