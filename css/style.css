@@ -13,6 +13,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 40%;
+    right: 15%;
 }
 
 .container {
