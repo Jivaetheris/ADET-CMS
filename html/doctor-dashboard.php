@@ -144,12 +144,17 @@ $doctor_result = $connection->query($query);
             // If appointments are found, display them
             if (isset($result) && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                            <td>" . htmlspecialchars($row["PatientFirstName"]) . " " . htmlspecialchars($row["PatientLastName"]) . "</td>
-                            <td>" . htmlspecialchars($row["disease_description"]) . "</td>
-                            <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
-                            <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
-                        </tr>";
+                echo "<tr>
+                        <td>" . htmlspecialchars($row["PatientFirstName"]) . " " . htmlspecialchars($row["PatientLastName"]) . "</td>
+                        <td>" . htmlspecialchars($row["disease_description"]) . "</td>
+                        <td>" . htmlspecialchars($row["appointment_date"]) . "</td>
+                        <td class='status-" . strtolower($row["status"]) . "'>" . htmlspecialchars($row["status"]) . "</td>
+                        <td>
+                        <button onclick=\"updateStatus(" . $row['appointment_id'] . ", 'accept')\">Accept</button>
+                        <button onclick=\"updateStatus(" . $row['appointment_id'] . ", 'decline')\">Decline</button>
+                        <button onclick=\"rescheduleAppointment(" . $row['appointment_id'] . ")\">Reschedule</button>
+                        </td>
+                    </tr>";
                 }
             } else {
                 echo "<tr><td colspan='4' style='text-align:center;'>No appointments found.</td></tr>";
